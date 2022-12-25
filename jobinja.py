@@ -11,10 +11,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-chrome_options = Options()
-chrome_options.add_argument("--incognito")
-chrome_options.add_argument("--window-size=1920x1080")
-# driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=chrome_options)
+# driver = webdriver.Chrome(executable_path='chromedriver.exe')
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 
