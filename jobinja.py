@@ -12,12 +12,15 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 # driver = webdriver.Chrome(executable_path='chromedriver.exe')
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+chrome_options = Options()
+chrome_options.add_argument("--incognito")
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+driver.implicitly_wait(1)
 
 
 def find_by_filter(title, city_fa):
     driver.get("https://jobinja.ir/jobs")
-    driver.implicitly_wait(1)
 
     job_title = driver.find_element(By.CSS_SELECTOR, ".c-jobSearchTop__blockInput")
     job_title.send_keys(title)
@@ -27,7 +30,7 @@ def find_by_filter(title, city_fa):
     search.send_keys(city_fa + Keys.ENTER)
 
     driver.find_element(By.XPATH, "//button[contains(text(),'جستجو کن')]").click()
-    driver.implicitly_wait(1)
+
     page = 1
     cnt = 1
     output = []
