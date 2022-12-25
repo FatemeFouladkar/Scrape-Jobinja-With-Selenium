@@ -1,19 +1,18 @@
 import pandas as pd
 import json
-import os
+import os 
 from datetime import datetime
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 
 
-# driver = webdriver.Chrome(executable_path='chromedriver.exe')
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-
+chrome_options = Options()
+chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--window-size=1920x1080")
+driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=chrome_options)
 
 def find_by_filter(title, city_fa):
     driver.get("https://jobinja.ir/jobs")
@@ -57,7 +56,6 @@ def find_by_filter(title, city_fa):
             cnt += 1
             page += 1    
 
-
     output_directory = f'output/{datetime.today().strftime("%Y-%m-%d")}'
     os.makedirs(output_directory, exist_ok=True)
     with open(f'{output_directory}/{title}-{city_fa}.json', 'w', encoding="utf-8") as f:
@@ -76,5 +74,5 @@ def login(username, password):
 
 
 
-login('email', 'password')
-find_by_filter('title', 'city_fa')
+login('fatemefuoladkar@gmail.com', '14461446')
+find_by_filter('Django', 'تهران')
