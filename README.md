@@ -4,7 +4,7 @@ A short python script to scrape data from [Jobinja.ir](https://jobinja.ir/) with
 This script searches for the given title and city and saves all the results to a `.json` and `.csv` file.
 
 ## Run the script
----
+
 1. Clone the project and install the dependencies:
 
     ```
