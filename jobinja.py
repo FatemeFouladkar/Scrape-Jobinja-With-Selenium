@@ -42,7 +42,7 @@ def find_by_filter(title, city_fa):
         except:
             results = driver.find_elements(By.XPATH, '//div[@class="o-listView__itemInfo"]')
             for r in results:
-                h3_title = r.find_element(By.XPATH, './/h2/a[@class="c-jobListView__titleLink"]').text
+                h2_title = r.find_element(By.XPATH, './/h2/a[@class="c-jobListView__titleLink"]').text
                 link = r.find_element(By.XPATH, './/h2/a[@class="c-jobListView__titleLink"]').get_attribute('href')
                 company = r.find_element(By.XPATH, './/ul/li[1]/span').text
                 city = r.find_element(By.XPATH, './/ul/li[2]/span').text
@@ -50,7 +50,7 @@ def find_by_filter(title, city_fa):
                 salary = r.find_element(By.XPATH, './/ul/li[3]/span/span[last()]').text
 
                 output.append(dict({
-                                "title": h3_title,
+                                "title": h2_title,
                                 "company": company,
                                 "city": city,
                                 "job_type": job_type,
